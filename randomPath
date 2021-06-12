@@ -1,0 +1,46 @@
+
+        foreach (Transform waypoint in Waypoints)
+        {
+            float currentPos = this.transform.position.x;
+            float positionA;
+            float positionB;
+            bool isWater = false;
+
+            Vector2 a = new Vector2(this.transform.position.x, this.transform.position.y);
+            Vector2 b = new Vector2(waypoint.transform.position.x, waypoint.transform.position.y);
+
+
+            positionA = waypoint.transform.position.x;
+            positionB = Waypoint2.transform.position.x;
+            
+
+
+
+            if (a == b)
+            {
+                waterField();
+                isWater = true;
+            }
+
+
+            else if ( positionA < currentPos && positionB > currentPos && Waypoints.Length==2)
+            {
+                waterField();
+                isWater = true;
+            }
+            else if(positionB < currentPos && positionA > currentPos && Waypoints.Length == 2)
+            {
+                waterField();
+                isWater = true;
+            }
+
+            if (isWater == false)
+            {
+                int randomNumber = Random.Range(0, 100);
+                if (randomNumber >= 30) gameObject.GetComponent<SpriteRenderer>().sprite = grassSimple1;
+                if (randomNumber >= 20 && randomNumber < 30) gameObject.GetComponent<SpriteRenderer>().sprite = grassSimple2;
+                if (randomNumber >= 10 && randomNumber < 20) gameObject.GetComponent<SpriteRenderer>().sprite = grassSimpleFlower;
+                if (randomNumber >= 0 && randomNumber < 10)  gameObject.GetComponent<SpriteRenderer>().sprite = grassSimpleFlower2;
+            }
+
+        }
